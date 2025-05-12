@@ -1,0 +1,51 @@
+package hc_sr04.PIP_PROIECT_main;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.awt.Color;
+import java.awt.Component;
+import javax.swing.JButton;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+public class mscTest {
+
+    private msc frame;
+
+    @BeforeEach
+    public void setUp() {
+        frame = new msc();
+    }
+
+    @Test
+    public void testONOFFButtonToggle() {
+        JButton toggleButton = null;
+
+        for (Component comp : frame.getContentPane().getComponents()) {
+            if (comp instanceof JButton && ((JButton) comp).getText().equals("OFF")) {
+                toggleButton = (JButton) comp;
+                break;
+            }
+        }
+
+        assertNotNull(toggleButton, "Butonul OFF nu a fost găsit");
+
+        // Verificăm că inițial este OFF
+        assertEquals("OFF", toggleButton.getText());
+        assertEquals(Color.RED, toggleButton.getBackground());
+
+        // Simulăm click pe buton
+        toggleButton.doClick();
+
+        // Verificăm că a devenit ON
+        assertEquals("ON", toggleButton.getText());
+        assertEquals(new Color(0, 180, 0), toggleButton.getBackground());
+
+        // Click din nou - revine la OFF
+        toggleButton.doClick();
+
+        assertEquals("OFF", toggleButton.getText());
+        assertEquals(Color.RED, toggleButton.getBackground());
+    }
+}
