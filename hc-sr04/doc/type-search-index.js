@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"ex","l":"control"},{"p":"ex","l":"control_gui"},{"p":"ex","l":"Gaz"},{"p":"ex","l":"gz"},{"p":"ex","l":"main"},{"p":"ex","l":"main_gui"},{"p":"ex","l":"Mainn"},{"p":"ex","l":"Miscare"},{"p":"ex","l":"msc"},{"p":"ex","l":"proxi"},{"p":"ex","l":"Proximitate"}];updateSearchResults();
