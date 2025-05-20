@@ -110,7 +110,7 @@ class msc extends JFrame{
 				.address(17)
 				.pull(PullResistance.PULL_DOWN)
 				.debounce(3000L)
-				.provider("pigpio-digital-input")
+				.provider("linuxfs-digital-input")
 				.build();
 		DigitalInput pirSensor = pi4j.create(config);
 		pirSensor.addListener((DigitalStateChangeListener) event->{
