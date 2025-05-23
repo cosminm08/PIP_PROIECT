@@ -1,0 +1,105 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.exemplu</groupId>
+  <artifactId>hc-sr04</artifactId>
+  <version>1.0-SNAPSHOT</version>
+
+  <repositories>
+    <repository>
+      <id>pi4j</id>
+      <url>https://pi4j.com/maven</url>
+    </repository>
+  </repositories>
+
+  <properties>
+    <maven.compiler.source>17</maven.compiler.source>
+    <maven.compiler.target>17</maven.compiler.target>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <pi4j.version>2.3.0</pi4j.version>
+  </properties>
+
+  <dependencies>
+
+    <!-- Pi4J Core -->
+    <dependency>
+      <groupId>com.pi4j</groupId>
+      <artifactId>pi4j-core</artifactId>
+      <version>${pi4j.version}</version>
+    </dependency>
+
+    <!-- Raspberry Pi plugin (detectare board, optional dar recomandat) -->
+    <dependency>
+      <groupId>com.pi4j</groupId>
+      <artifactId>pi4j-plugin-raspberrypi</artifactId>
+      <version>${pi4j.version}</version>
+    </dependency>
+
+    <!-- GPIOD Plugin (linuxfs sau gpiod) -->
+    <dependency>
+      <groupId>com.pi4j</groupId>
+      <artifactId>pi4j-plugin-gpiod</artifactId>
+      <version>${pi4j.version}</version>
+    </dependency>
+
+    <!-- Logging: SLF4J + Logback -->
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>1.7.36</version>
+    </dependency>
+
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+      <version>1.2.11</version>
+    </dependency>
+
+    <!-- Cassandra driver (cu excluderi de logging conflictuale) -->
+    <dependency>
+      <groupId>org.apache.cassandra</groupId>
+      <artifactId>cassandra-all</artifactId>
+      <version>0.8.1</version>
+      <exclusions>
+        <exclusion>
+          <groupId>org.slf4j</groupId>
+          <artifactId>slf4j-log4j12</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>log4j</groupId>
+          <artifactId>log4j</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+
+  </dependencies>
+
+  <build>
+    <plugins>
+      <!-- Compiler Plugin -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.10.1</version>
+        <configuration>
+          <source>${maven.compiler.source}</source>
+          <target>${maven.compiler.target}</target>
+        </configuration>
+      </plugin>
+
+      <!-- Optional: exec:java pentru rulare rapidă -->
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>3.1.0</version>
+        <configuration>
+          <mainClass>ex.Miscare</mainClass> <!-- Modifică dacă numele clasei e altul -->
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>
